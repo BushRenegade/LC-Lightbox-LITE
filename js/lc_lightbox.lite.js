@@ -114,7 +114,12 @@
 			title_attr		: 'title', // attribute containing the title - is possible to specify a selector with this syntax: "> .selector" or "> span" 
 			txt_attr		: 'data-lcl-txt', // attribute containing the description - is possible to specify a selector with this syntax: "> .selector" or "> span" 
 			author_attr		: 'data-lcl-author', // attribute containing the author - is possible to specify a selector with this syntax: "> .selector" or "> span"
-            author_by_txt   : 'by', // which text is used before the author name, by default is "by"
+			slink_attr		: 'data-lcl-slink', // attribute containing the link to the origin - is possible to specify a selector with this syntax: "> .selector" or "> span"
+            		stitle_attr		: 'data-lcl-stitle', // attribute containing the title for the link to the origin - is possible to specify a selector with this syntax: "> .selector" or "> span"
+            		sliclink_attr		: 'data-lcl-sliclink', // attribute containing the license link
+            		slicimg_attr		: 'data-lcl-slicimg', // attribute containing the link to the license image file
+            		slictxt_attr		: 'data-lcl-slictxt', // attribute containing the title or text for the license
+            		author_by_txt   	: 'by', // which text is used before the author name, by default is "by"
 			
 			slideshow		: true, // whether to enable slideshow
 			open_close_time	: 400, // animation duration for lightbox opening and closing / 1000 = 1sec
@@ -464,6 +469,9 @@
 							el.title	= (typeof(v.title) == 'undefined') ? '' : revert_html_entit(v.title); 
 							el.txt	 	= (typeof(v.txt) == 'undefined') ? '' : revert_html_entit(v.txt); 
 							el.author 	= (typeof(v.author) == 'undefined') ? '' : revert_html_entit(v.author); 
+							el.slink 	= (typeof(v.slink) == 'undefined') ? '' : revert_html_entit(v.slink); // added by BushRenegade allowing for source link
+                            				el.stitle 	= (typeof(v.stitle) == 'undefined') ? '' : revert_html_entit(v.stitle); // added by BushRenegade allowing for source title
+                            				el.slic 	= (typeof(v.slic) == 'undefined') ? '' : revert_html_entit(v.slic); // added by BushRenegade allowing for a License to be included
 
 							el.width 	= (typeof(v.width) == 'undefined') ? false : v.width;
 							el.height 	= (typeof(v.height) == 'undefined') ? false : v.height;
@@ -1020,6 +1028,8 @@
 				
 				if(el.title) 	{$('#lcl_txt').append('<h3 id="lcl_title">'+ el.title +'</h3>');}
 				if(el.author) 	{$('#lcl_txt').append('<h5 id="lcl_author">'+ lcl_settings.author_by_txt +' '+ el.author +'</h5>');}
+				if(el.stitle) 	{$('#lcl_txt').append('<h4 id="lcl_source"><strong>Source:</strong> <a href="'+ el.slink +'" target="_blank" rel="nofollow">'+ el.stitle +'</a></h5>');} //added by BushRenegade
+                		if(el.slic) 	{$('#lcl_txt').append('<h6 id="lcl_license"><strong>License:</strong> <a href="'+ el.sliclink +'" target="_blank" rel="nofollow"><img src="'+ el.slicimg +'" alt="'+ el.slictxt +'" /></a></h5>');} //added by BushRenegade
 				if(el.txt) 		{$('#lcl_txt').append('<section id="lcl_descr">'+ el.txt +'</section>');}
 				
 				// set class for bottom border
