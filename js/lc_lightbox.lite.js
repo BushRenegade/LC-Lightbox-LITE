@@ -9,7 +9,12 @@
   
   * Released under the MIT license
   */
- 
+  /*
+  * Modified to allow image source links and licensing details
+  * modification done by BushRenegade
+  * URL: https://bushrengade.au
+  * Lines impacted: 122 - 126, 327 - 332,  483 - 485, 1042 - 1043
+  */
 (function ($) {
 	lcl_objs 		= []; // array containing all initialized objects - useful for deeplinks
 	
@@ -318,7 +323,13 @@
 							hash	: (o.deeplink) 		? get_hash(src) : false,
 							title 	: (o.show_title) 	? attr_or_selector_data($e, 'title_attr') : '',	
 							txt 	: (o.show_descr) 	? attr_or_selector_data($e, 'txt_attr') : '',	
-							author 	: (o.show_author) 	? attr_or_selector_data($e, 'author_attr') : '',	
+							author 	: (o.show_author) 	? attr_or_selector_data($e, 'author_attr') : '',
+							slink 	: (o.show_slink) 	? attr_or_selector_data($e, 'slink_attr') : '', // added by BushRenegade
+						    	stitle 	: (o.show_stitle) 	? attr_or_selector_data($e, 'stitle_attr') : '', // added by BushRenegade
+						    	slic 	: (o.show_slic) 	? attr_or_selector_data($e, 'sliclink_attr', 'slicimg_attr', 'slictxt_attr') : '', // added by BushRenegade
+						    	sliclink 	: (o.show_slic) 	? attr_or_selector_data($e, 'sliclink_attr') : '', // added by BushRenegade
+						    	slicimg 	: (o.show_slic) 	? attr_or_selector_data($e, 'slicimg_attr') : '', // added by BushRenegade
+						    	slictxt 	: (o.show_slic) 	? attr_or_selector_data($e, 'slictxt_attr') : '', // added by BushRenegade	
 							thumb	: (o.thumb_attr && typeof(o.thumb_attr) != 'undefined')	? $e.attr(o.thumb_attr) : '',	
 							
 							width	: (type != 'image' && typeof($e.data('lcl-w')) != 'undefined') ? $e.data('lcl-w') : false,
